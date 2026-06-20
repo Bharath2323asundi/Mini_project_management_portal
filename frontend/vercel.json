@@ -15,6 +15,18 @@
   ],
   "routes": [
     {
+      "src": "/api/auth/register",
+      "dest": "api/server.js"
+    },
+    {
+      "src": "/api/auth/login",
+      "dest": "api/server.js"
+    },
+    {
+      "src": "/api/tasks(.*)",
+      "dest": "api/server.js"
+    },
+    {
       "src": "/api/(.*)",
       "dest": "api/server.js"
     },
