@@ -1,6 +1,9 @@
 {
   "name": "mini-project-management-portal",
   "version": "1.0.0",
+  "scripts": {
+    "build": "cd api && npm install && cd ../frontend && npm install && npm run build"
+  },
   "dependencies": {
     "mysql2": "^3.22.5"
   }
