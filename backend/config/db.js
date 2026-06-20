@@ -17,8 +17,15 @@ const sequelize = isTestEnv
       process.env.DB_PASS || '',
       {
         host: process.env.DB_HOST || 'localhost',
+        port: process.env.DB_PORT || 3306,
         dialect: 'mysql',
-        logging: false // Disable SQL query logging in console
+        logging: false, // Disable SQL query logging in console
+        dialectOptions: process.env.DB_SSL === 'true' ? {
+          ssl: {
+            require: true,
+            rejectUnauthorized: false
+          }
+        } : {}
       }
     );
 
