@@ -1,0 +1,7 @@
+{
+  "name": "mini-project-management-portal",
+  "version": "1.0.0",
+  "dependencies": {
+    "mysql2": "^3.22.5"
+  }
+}
