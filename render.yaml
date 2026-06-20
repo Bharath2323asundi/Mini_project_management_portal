@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: bharath-project-backend
+    env: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: DB_HOST
+        sync: false
+        placeholder: "Enter MySQL host (e.g. mysql-xxxx.aivencloud.com)"
+      - key: DB_PORT
+        value: "3306"
+      - key: DB_USER
+        value: avnadmin
+      - key: DB_PASS
+        sync: false
+        placeholder: "Enter MySQL Password"
+      - key: DB_NAME
+        value: defaultdb
+      - key: DB_SSL
+        value: "true"
+      - key: JWT_SECRET
+        generateValue: true
