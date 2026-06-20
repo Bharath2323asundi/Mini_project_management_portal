@@ -1,23 +1,27 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
+import { vi } from 'vitest';
 import TaskForm from '../components/TaskForm';
 import { createTask } from '../services/taskService';
 import toast from 'react-hot-toast';
 
 // Mock the dependencies
-jest.mock('../services/taskService');
-jest.mock('react-hot-toast');
+vi.mock('../services/taskService');
+vi.mock('react-hot-toast');
 
 // Mock useNavigate
-const mockNavigate = jest.fn();
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useNavigate: () => mockNavigate,
-}));
+const mockNavigate = vi.fn();
+vi.mock('react-router-dom', async () => {
+  const actual = await vi.importActual('react-router-dom');
+  return {
+    ...actual,
+    useNavigate: () => mockNavigate,
+  };
+});
 
 describe('TaskForm Component', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('renders correctly', () => {

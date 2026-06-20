@@ -10,12 +10,14 @@ let createdTaskId;
 beforeAll(async () => {
   await sequelize.sync({ force: true });
 
-  // Create a user and get token for task tests
-  const user = await User.create({
-    name: 'Task Test User',
-    email: 'task_test@example.com',
-    password: 'password123'
-  });
+  // Create a user via register endpoint so the password gets hashed correctly
+  await request(app)
+    .post('/api/auth/register')
+    .send({
+      name: 'Task Test User',
+      email: 'task_test@example.com',
+      password: 'password123'
+    });
 
   const res = await request(app)
     .post('/api/auth/login')

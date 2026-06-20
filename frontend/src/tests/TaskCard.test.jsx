@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
+import { vi } from 'vitest';
 import TaskCard from '../components/TaskCard';
 
 describe('TaskCard Component', () => {
@@ -11,7 +12,7 @@ describe('TaskCard Component', () => {
   };
 
   it('renders task details correctly', () => {
-    render(<TaskCard task={mockTask} onStatusChange={jest.fn()} onDelete={jest.fn()} />);
+    render(<TaskCard task={mockTask} onStatusChange={vi.fn()} onDelete={vi.fn()} />);
     
     expect(screen.getByText('Test Task')).toBeInTheDocument();
     expect(screen.getByText('This is a test task description')).toBeInTheDocument();
@@ -19,8 +20,8 @@ describe('TaskCard Component', () => {
   });
 
   it('calls onStatusChange when Complete button is clicked', () => {
-    const mockOnStatusChange = jest.fn();
-    render(<TaskCard task={mockTask} onStatusChange={mockOnStatusChange} onDelete={jest.fn()} />);
+    const mockOnStatusChange = vi.fn();
+    render(<TaskCard task={mockTask} onStatusChange={mockOnStatusChange} onDelete={vi.fn()} />);
     
     fireEvent.click(screen.getByText('Complete'));
     expect(mockOnStatusChange).toHaveBeenCalledWith(1, 'Completed');
@@ -28,15 +29,15 @@ describe('TaskCard Component', () => {
 
   it('disables Complete button if status is already Completed', () => {
     const completedTask = { ...mockTask, status: 'Completed' };
-    render(<TaskCard task={completedTask} onStatusChange={jest.fn()} onDelete={jest.fn()} />);
+    render(<TaskCard task={completedTask} onStatusChange={vi.fn()} onDelete={vi.fn()} />);
     
     const completeButton = screen.getByText('Complete');
     expect(completeButton).toBeDisabled();
   });
 
   it('calls onDelete when Delete button is clicked', () => {
-    const mockOnDelete = jest.fn();
-    render(<TaskCard task={mockTask} onStatusChange={jest.fn()} onDelete={mockOnDelete} />);
+    const mockOnDelete = vi.fn();
+    render(<TaskCard task={mockTask} onStatusChange={vi.fn()} onDelete={mockOnDelete} />);
     
     fireEvent.click(screen.getByText('Delete'));
     expect(mockOnDelete).toHaveBeenCalledWith(1);

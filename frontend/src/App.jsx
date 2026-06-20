@@ -5,6 +5,7 @@ import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import AddTask from './pages/AddTask';
 import Navbar from './components/Navbar';
@@ -18,8 +19,9 @@ function App() {
             <Navbar />
             <main className="flex-grow container mx-auto px-4 py-8 max-w-7xl">
               <Routes>
-                {/* Public Route */}
+                {/* Public Routes */}
                 <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
 
                 {/* Protected Routes */}
                 <Route 
